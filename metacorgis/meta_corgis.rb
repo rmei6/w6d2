@@ -112,8 +112,8 @@ class MetaCorgiSnacks
 
   def method_missing(name, *args)
     # Your code goes here...
-    info = @snack_box.send("get_#{name}_info(#{@box_id})")
-    tastiness = @snack_box.send("get_#{name}_tastiness(#{@box_id})")
+    info = @snack_box.send("get_#{name}_info",@box_id)
+    tastiness = @snack_box.send("get_#{name}_tastiness",@box_id)
     result = "#{name.capitalize}: #{info}: #{tastiness}"
     tastiness > 30 ? "* #{result}" : result
   end
@@ -122,8 +122,8 @@ class MetaCorgiSnacks
   def self.define_snack(name)
     # Your code goes here...
     define_method(name) {
-      info = @snack_box.send("get_#{name}_info(#{@box_id})")
-      tastiness = @snack_box.send("get_#{name}_tastiness(#{@box_id})")
+      info = @snack_box.send("get_#{name}_info",@box_id)
+      tastiness = @snack_box.send("get_#{name}_tastiness",@box_id)
       result = "#{name.capitalize}: #{info}: #{tastiness}"
       tastiness > 30 ? "* #{result}" : result
     }
